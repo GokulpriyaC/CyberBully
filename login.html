@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | CyberGuard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #1f1c2c, #928dab);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      background: #1f1c2c;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #00ffae;
+    }
+
+    .container {
+      margin: auto;
+      margin-top: 60px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 15px;
+      width: 400px;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffffff;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    form input[type="text"],
+    form input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ffffffcc;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: #00ffae;
+      color: #000;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-submit:hover {
+      background-color: #0aeab1;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .register-link a {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><i class="fas fa-shield-alt"></i> CyberGuard</div>
+  <ul>
+    <li><a href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a></li>
+    <li><a href="{% url 'report' %}"><i class="fas fa-flag"></i> Report</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="username"><i class="fas fa-user"></i> Username</label>
+    <input type="text" name="username" id="username" required>
+
+    <label for="password"><i class="fas fa-lock"></i> Password</label>
+    <input type="password" name="password" id="password" required>
+
+    <button type="submit" class="btn-submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+  </form>
+  <div class="register-link">
+    Don't have an account? <a href="{% url 'register' %}">Register here</a>
+  </div>
+</div>
+
+</body>
+</html>

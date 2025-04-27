@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Fake Profile</title>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            padding-top: 90px;
+            color: #fff;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #1a1a1a;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar .logo {
+            color: #00ffe7;
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar .nav-links a {
+            color: #f1f1f1;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #00ffe7;
+            transform: scale(1.1);
+        }
+
+        .report-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            padding: 30px 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            color: #ddd;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            background: #1f1f1f;
+            border: 1px solid #555;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #eee;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #aaa;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(to right, #ff4b2b, #ff416c);
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 20px;
+            }
+
+            .navbar .nav-links {
+                margin-top: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .navbar .nav-links a {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-user-shield"></i> SafeNet
+        </div>
+        <div class="nav-links">
+            <a href="#"><i class="fas fa-home"></i> Home</a>
+            <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </nav>
+
+    <!-- REPORT FORM -->
+    <div class="report-container">
+        <h2>Report Bullied Profile</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="reported_profile">Reported Profile:</label>
+            <input type="text" name="reported_profile" id="reported_profile" placeholder="Enter username or profile ID" required>
+
+            <label for="reason">Reason:</label>
+            <textarea name="reason" id="reason" rows="4" placeholder="Explain why this profile is fake" required></textarea>
+
+            <button type="submit">Submit Report</button>
+        </form>
+    </div>
+
+</body>
+</html>
